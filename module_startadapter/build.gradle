@@ -43,9 +43,9 @@ dependencies {
 }
 
 //maven_push
-def group = 'it90msart'
+def group = 'github.com.it90msart'
 def module_name="SmartFactoryAdapter"
-def mVersion = '1.0.0'
+def mVersion = '1.0.2'
 afterEvaluate {
     publishing {
         publications {

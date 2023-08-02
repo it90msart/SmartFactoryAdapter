@@ -1,0 +1,4 @@
+*.iml
+.gradle
+/module_startadapter/src/androidTest/
+/module_startadapter/src/test/

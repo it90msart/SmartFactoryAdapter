@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data ></data>
+
+    <FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.example.testcode.HsRoundImageView
+            android:id="@+id/imgview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_launcher_background"
+            app:mleftButtomRadius="60"
+            app:mrightButtomRadius="60"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyeleview_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <Button
+            android:id="@+id/btn_load"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="点击" />
+
+
+
+
+    </FrameLayout>
+</layout>

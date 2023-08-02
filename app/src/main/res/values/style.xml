@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="roundRadion">
+
+        <attr name="mleftTopRadius" format="integer" />
+        <attr name="mrightRadius" format="integer" />
+        <attr name="mleftButtomRadius" format="integer" />
+        <attr name="mrightButtomRadius" format="integer" />
+        <attr name="allRadius" format="integer" />
+
+    </declare-styleable>
+</resources>

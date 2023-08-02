@@ -43,7 +43,7 @@ dependencies {
 }
 
 //maven_push
-def group = 'it_90smart'
+def group = 'it90msart'
 def module_name="SmartFactoryAdapter"
 def mVersion = '1.0.0'
 afterEvaluate {

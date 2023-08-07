@@ -18,10 +18,11 @@ import com.wiik.module_startadapter.smartadapter.SmartViewHolder
  *     desc   :
  * </pre>
  */
-class MyTextFactory : com.wiik.module_startadapter.smartadapter.SmartItemViewFactory() {
+class MyTextFactory : SmartItemViewFactory() {
     override fun getLatouy(): Int {
         return R.layout.layout_factory_view
     }
+
 
     override fun dataItemType(any: Any?): Boolean {
         if (any is String)
@@ -33,7 +34,7 @@ class MyTextFactory : com.wiik.module_startadapter.smartadapter.SmartItemViewFac
     override fun createViewHolder(
         parent: ViewGroup?,
         inflat: LayoutInflater
-    ): com.wiik.module_startadapter.smartadapter.SmartViewHolder<MyTextFactoryFactory> {
+    ): SmartViewHolder<MyTextFactoryFactory, String> {
 
         val binding = getViewBind<MyTextFactoryFactory>(parent, inflat)
         val rootView = onCreateViewHolderView(parent, inflat)
@@ -42,20 +43,19 @@ class MyTextFactory : com.wiik.module_startadapter.smartadapter.SmartItemViewFac
     }
 
     inner class MyDataViewHolder(root: View?, bind: MyTextFactoryFactory?) :
-        com.wiik.module_startadapter.smartadapter.SmartViewHolder<MyTextFactoryFactory>(root, bind) {
+        SmartViewHolder<MyTextFactoryFactory, String>(root, bind) {
         override fun initView(context: Context?) {
 
         }
 
-        override fun bindViewData(any: Any?, position: Int) {
-
+        override fun bindViewData(any: String?, position: Int) {
             val tyext = if (any is String)
                 any.toString()
             else "为null"
             bind?.textInfo?.setText(tyext)
-
-
         }
+
+
     }
 
 }

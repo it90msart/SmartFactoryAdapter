@@ -14,12 +14,12 @@ import androidx.recyclerview.widget.RecyclerView
  *     desc   :
  * </pre>
  */
-abstract class SmartViewHolder<T:ViewDataBinding> (val parent: View?, val bind: T?) :
+abstract class SmartViewHolder<T : ViewDataBinding,out DATA>(val parent: View?, val bind: T?) :
     RecyclerView.ViewHolder(if (bind == null) parent!! else bind.root) {
 
 
     fun getmContext(): Context? {
-        if (bind!=null)
+        if (bind != null)
             return bind.root.context
         return parent!!.context
     }
@@ -28,7 +28,9 @@ abstract class SmartViewHolder<T:ViewDataBinding> (val parent: View?, val bind: 
     abstract fun initView(context: Context?)
 
 
-    abstract fun bindViewData(any: Any?, position: Int);
+    abstract fun  bindViewData(any: @UnsafeVariance DATA?, position: Int);
+
+
 
 
 }

@@ -49,7 +49,7 @@ class SmartAdapter<VH : RecyclerView.ViewHolder>(val context: Context?) :
         if (!list.isNullOrEmpty()) {
             dataList.apply {
                 if (dataList == null) {
-                    dataList = mutableListOf<Any?>()
+                    dataList = mutableListOf()
                 }
                 befoSize = dataList.size
                 dataList.addAll(list)
@@ -67,7 +67,7 @@ class SmartAdapter<VH : RecyclerView.ViewHolder>(val context: Context?) :
     public fun addDataItem(item: Any?) {
         dataList.apply {
             if (dataList == null) {
-                dataList = mutableListOf<Any?>()
+                dataList = mutableListOf()
             }
             val oldSize =
                 dataList.size
@@ -87,7 +87,7 @@ class SmartAdapter<VH : RecyclerView.ViewHolder>(val context: Context?) :
         val inflat = LayoutInflater.from(context)
         val hdoler = factory!!.createViewHolder(parent, inflat) as VH
 
-        if (hdoler is SmartViewHolder<*>) {
+        if (hdoler is SmartViewHolder<*, *>) {
             hdoler.initView(context)
         }
         return hdoler
@@ -96,13 +96,15 @@ class SmartAdapter<VH : RecyclerView.ViewHolder>(val context: Context?) :
 
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        val baseHolder = holder as SmartViewHolder<*>
-        baseHolder.bindViewData(getItem(position), position)
+        val baseHolder = holder as SmartViewHolder<*, *>
+
+        val data:Any?=getItem(position);
+        baseHolder.bindViewData(data, position)
     }
 
     override fun getItemViewType(position: Int): Int {
         //当前item的位置
-        val dataItem = dataList.get(position)
+        val dataItem: Any? = dataList.get(position)
 
         var type = -1
 
@@ -126,6 +128,27 @@ class SmartAdapter<VH : RecyclerView.ViewHolder>(val context: Context?) :
         return 0
     }
 
+    //获取当前位置的factory
+    public fun getFactory(position: Int): SmartItemViewFactory? {
+        //当前item的位置
+        val dataItem: Any? = dataList.get(position)
+
+        var mFactory: SmartItemViewFactory? = null
+
+        //根据item命中对应得布局
+        for (key in map.keys) {
+            val factory = map.get(key)
+
+            if (factory != null && factory.dataItemType(dataItem)) {
+                mFactory = factory
+                break
+            }
+        }
+
+        return mFactory
+
+    }
+
     public fun getItem(position: Int): Any? {
         return dataList.run {
             if (dataList.isNullOrEmpty()) null else dataList.get(position)
@@ -133,7 +156,7 @@ class SmartAdapter<VH : RecyclerView.ViewHolder>(val context: Context?) :
     }
 
     override fun getItemCount(): Int {
-        return dataTypeList.run { if (dataList==null) 0 else dataList.size}
+        return dataTypeList.run { if (dataList == null) 0 else dataList.size }
 
     }
 }

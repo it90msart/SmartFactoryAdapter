@@ -25,16 +25,19 @@ abstract class SmartItemViewFactory {
     abstract fun dataItemType(any: Any?): Boolean
 
 
-    abstract fun createViewHolder(parent: ViewGroup?,inflat: LayoutInflater): SmartViewHolder<*>;
+    abstract fun createViewHolder(
+        parent: ViewGroup?,
+        inflat: LayoutInflater
+    ): SmartViewHolder<*, *>;
 
 
-    public fun <V : ViewDataBinding> getViewBind(parent: ViewGroup?, inflat: LayoutInflater?): V?{
+    public fun <V : ViewDataBinding> getViewBind(parent: ViewGroup?, inflat: LayoutInflater?): V? {
         return DataBindingUtil.inflate<V>(inflat!!, getLatouy(), parent, false)
     }
 
 
-    public fun onCreateViewHolderView(parent: ViewGroup?, inflat: LayoutInflater):View?{
-        return inflat.inflate(getLatouy(),parent,false)
+    public fun onCreateViewHolderView(parent: ViewGroup?, inflat: LayoutInflater): View? {
+        return inflat.inflate(getLatouy(), parent, false)
     }
 
 }
